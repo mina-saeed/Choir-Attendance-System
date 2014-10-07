@@ -42,31 +42,30 @@
     <div class="body_wrap">
         <div class="container">
 
-            <h1><span>Sons of light Choir</span></h1>
-			<div id="topmenu">
-				<ul class="dropdown clearfix boxed boxed-blue">
-					<li><a href="#"><span>Home</span></a></li>
-					<li><a href="#"><span>Attendance</span></a></li>
-					<li><a href="#">Profile</a></li>
-					<li><a href="#">Messages</a></li>
-					<li><a href="#">News</a></li>
-					<li><a href="#"><span>Contact Us</span></a></li>
-					<li class="menu-search">
-						<form id="searchForm" class="menu-search-form" method="post">
-							<input type="text" name="search" value="" class="menu-search-field" placeholder="Search the website" />
-							<input type="submit" value="" class="btn menu-search-submit" name="search-send" />
-						</form>
-					</li>
-				</ul>
-			</div>
+            <?php require_once('menu.php');?>
+		
 		<div class="row">
 				<div class="inner">
 					<div class="grid-menu clearfix">
 						<div class="grid-box grid-box-large dropdown clearfix boxed boxed-turquoise">
-						</form action="addpost.php" method="post">
+						<form action="engine.php" method="post" enctype="multipart/form-data" >
 							<div class="row">
 								<div class="col-md-4"></div>
-								<div class="col-md-4"><div class="inner"><strong><h1 align="center">Add new Post<h1></Strong></div></div>
+								<div class="col-md-4"><div class="inner"><strong><h1 align="center">Add Categry<h1></Strong></div></div>
+								<div class="col-md-4"></div>
+								<input type='hidden' value="addCat" name="action"/>
+							</div>
+							<br>
+							<br>
+							<br>
+							<div class="row">
+								<div class="col-md-4"></div>
+								<div class="col-md-4"><div class="inner" align="center"><strong><h5 align="center">Name<h5></Strong></div></div>
+								<div class="col-md-4"></div>
+							</div>
+							<div class="row">
+								<div class="col-md-4"></div>
+								<div class="col-md-4"><div class="inner" align="center"><input type="text" name="catname" value=""  placeholder="Category Name" required/></div></div>
 								<div class="col-md-4"></div>
 							</div>
 							<br>
@@ -74,31 +73,7 @@
 							<br>
 							<div class="row">
 								<div class="col-md-4"></div>
-								<div class="col-md-4"><div class="inner" align="center"><strong><h5 align="center">Post Title<h5></Strong></div></div>
-								<div class="col-md-4"></div>
-							</div>
-							<div class="row">
-								<div class="col-md-4"></div>
-								<div class="col-md-4"><div class="inner" align="center"><input type="text" name="search" value=""  placeholder="Post Title" /></div></div>
-								<div class="col-md-4"></div>
-							</div>
-							<br><br><br>
-							<div class="row">
-								<div class="col-md-4"></div>
-								<div class="col-md-4"><div class="inner" align="center"><strong><h5 align="center">Content<h5></Strong></div></div>
-								<div class="col-md-4"></div>
-							</div>
-							<div class="row">
-								<div class="col-md-4"></div>
-								<div class="col-md-4"><div class="inner" align="center"> <textarea id="message" placeholder="Message"></textarea></div></div>
-								<div class="col-md-4"></div>
-							</div>
-							<br>
-							<br>
-							<br>
-							<div class="row">
-								<div class="col-md-4"></div>
-								<div class="col-md-4"><div class="inner" align="center"> <span class="btn btn-icon-left"><input type="submit" value="Submit" /></span></div></div>
+								<div class="col-md-4"><div class="inner" align="center"> <span class="btn btn-icon-left"><input type="submit" value="Add" /></span></div></div>
 								<div class="col-md-4"></div>
 							</div>
 							

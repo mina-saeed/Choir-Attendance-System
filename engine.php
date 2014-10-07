@@ -17,6 +17,8 @@ switch ($action)
   case 'addProva':addProva();break;
   case 'attendance':attendance();break;
   case 'reply':reply();break;
+  case 'addCat':addCat();break;
+  case 'addSong':addSong();break;
 }
 function addPost()
 {
@@ -89,6 +91,7 @@ function register()
 	{
 		echo "error invitation code please go back and try again";
 	}
+	header("Location: login.php");
 }
 function login()
 {
@@ -162,6 +165,7 @@ function attendance()
 			mysql_query($query);
 		}
 	}
+	header("Location: home.php");
 }
 function reply()
 {
@@ -172,4 +176,45 @@ function reply()
 	$query="INSERT INTO `reply`(`post_id`, `user_id`, `content`) VALUES ('$postID','$userID','$content')";
 	mysql_query($query);
 	header("Location:post.php?postID=$postID");
+}
+function addCat()
+{
+	$name=$_POST['catname'];
+	$query="INSERT INTO `category`(`title`) VALUES ('$name')";
+	mysql_query($query);
+	header("Location: songs.php");
+}
+function addSong()
+{
+	session_start();
+	$title=$_POST['title'];
+	$link=$_POST['link'];
+	$team=$_POST['team'];
+	$writer=$_POST['writer'];
+	$composer=$_POST['composer'];
+	move_uploaded_file($_FILES["file_chord"]["tmp_name"],"img/chords/".$_FILES["file_chord"]["name"]);
+	$chords = "img/chords/".$_FILES["file_chord"]["name"];
+	move_uploaded_file($_FILES["file_soprano"]["tmp_name"],"img/voices/soprano/".$_FILES["file_soprano"]["name"]);
+	$soprano = "img/voices/soprano/".$_FILES["file_soprano"]["name"];
+	move_uploaded_file($_FILES["file_alto"]["tmp_name"],"img/voices/alto/".$_FILES["file_alto"]["name"]);
+	$alto = "img/voices/alto/".$_FILES["file_alto"]["name"];
+	move_uploaded_file($_FILES["file_tenor"]["tmp_name"],"img/voices/tenor/".$_FILES["file_tenor"]["name"]);
+	$tenor = "img/voices/tenor/".$_FILES["file_tenor"]["name"];
+	move_uploaded_file($_FILES["file_bass"]["tmp_name"],"img/voices/bass/".$_FILES["file_bass"]["name"]);
+	$bass = "img/voices/bass/".$_FILES["file_bass"]["name"];
+	move_uploaded_file($_FILES["file_word"]["tmp_name"],"img/word/".$_FILES["file_word"]["name"]);
+	$word = "img/word/".$_FILES["file_word"]["name"];
+	move_uploaded_file($_FILES["file_ppt"]["tmp_name"],"img/ppt/".$_FILES["file_ppt"]["name"]);
+	$ppt = "img/ppt/".$_FILES["file_ppt"]["name"];
+	$user=$_SESSION['userID'];
+	$query="INSERT INTO `song`(`title`, `link`, `ppt`, `chords`, `word`, `team`, `user_id`, `alto`, `tenor`, `soprano`, `bass`, `writer`, `composer`) VALUES ('$title','$link','$ppt','$chords','$word','$team','$user','$alto','$tenor','$soprano','$bass','$writer','$composer')";
+	mysql_query($query);
+	$cat=$_POST['category'];
+	$query="SELECT MAX(id) FROM song";
+	$lastid=mysql_query($query);
+	$songid=mysql_fetch_assoc($lastid);
+	$iid=$songid["MAX(id)"];
+	$query="INSERT INTO `song_cat`(`song_id`, `cat_id`) VALUES ('$iid','$cat')";
+	mysql_query($query);
+	header("Location :songs.php");
 }
