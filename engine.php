@@ -216,5 +216,5 @@ function addSong()
 	$iid=$songid["MAX(id)"];
 	$query="INSERT INTO `song_cat`(`song_id`, `cat_id`) VALUES ('$iid','$cat')";
 	mysql_query($query);
-	header("Location :songs.php");
+	header("Location: songs.php");
 }
