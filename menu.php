@@ -7,7 +7,7 @@
 					<li><a href="viewattendance.php"><span>Attendance</span></a></li>
 					<li><a href="profile.php">Profile</a></li>
 					<li><a href="notifications.php">Notifications</a></li>
-					<li><a href="#"><span>Songs</span></a></li>
+					<li><a href="songs.php"><span>Songs</span></a></li>
 					<?php if($_SESSION['isAdmin']==1):?>
 					<li><a href="adminDashboard.php"><span>Admin Dashboard</span></a></li>
 					<?php endif;?>
